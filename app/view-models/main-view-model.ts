@@ -1,7 +1,7 @@
 import { Observable } from "@nativescript/core";
 import { Page } from "@nativescript/core";
 import { DisplayPages } from '~/shared/enums';
-import { LoginSerivce } from '~/services/login-service'
+import { LoginService } from '~/services/login-service'
 
 export class MainViewModel extends Observable {
     private displayPage: string;
