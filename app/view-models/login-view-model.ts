@@ -58,7 +58,12 @@ export class LoginViewModel extends Observable {
         super();
         this.loginError = false;
         this.loginService = new LoginService();
-        let savedCredentials = this.loginService.GetSavedCredentials();
+        this.loginService.AddCredentials({
+            username: 'asmitty92',
+            password: 'Rushmor#3',
+            userId: '5d9ce112b3608e16726bc0ea'
+        })
+;        let savedCredentials = this.loginService.GetSavedCredentials();
         if (savedCredentials) {
             this.username = savedCredentials.username;
             this.password = savedCredentials.password;
@@ -69,17 +74,18 @@ export class LoginViewModel extends Observable {
     public ProcessLogin(args: EventData) {
         this.LoginError = false;
         this.IsLoading = true;
-        this.loginService.ProcessLogin(this.username, this.password).then(loginResponse => {
-            if (loginResponse.success) {
-                this.loginService.AddCredentials({username: this.username, password: this.password, userId: loginResponse.userId});
-                navigationModule.navigateToMainPage();
-            } else {
-                this.loginError = true;
-                this.Password = '';
-                this.Username = '';
-                this.IsLoading = false;
-            }
-        });
+        navigationModule.navigateToMainPage();
+        // this.loginService.ProcessLogin(this.username, this.password).then(loginResponse => {
+        //     if (loginResponse.success) {
+        //         this.loginService.AddCredentials({username: this.username, password: this.password, userId: loginResponse.userId});
+        //         navigationModule.navigateToMainPage();
+        //     } else {
+        //         this.loginError = true;
+        //         this.Password = '';
+        //         this.Username = '';
+        //         this.IsLoading = false;
+        //     }
+        // });
     }
 
     public ShowRegistration(): void {
