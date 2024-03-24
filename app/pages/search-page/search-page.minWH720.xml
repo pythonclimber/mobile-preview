@@ -1,0 +1,43 @@
+<StackLayout xmlns:mr="components/movie-row"
+             loaded="onSearchLoaded"
+             id="search">
+    <GridLayout columns="*" 
+                rows="auto, *" 
+                class="search-text-layout">
+        <GridLayout>
+            <SearchBar  backgroundColor="#999999" 
+                        id="movie-search" 
+                        hint="Search movie title..." 
+                        text="{{ SearchText }}" 
+                        textFieldBackgroundColor="white" 
+                        color="#000000" 
+                        clear="{{ ClearSearch }}" 
+                        submit="{{ DoSearch }}" 
+                        textFieldHintColor="#999999"
+                        class="movie-search-tab"/>
+        </GridLayout>
+        <GridLayout row="1" 
+                    columns="*" 
+                    rows="auto, *">
+            <Label  text="No Results..." 
+                    visibility="{{ SearchResults.length == 0 ? 'visible' : 'collapse' }}" 
+                    horizontalAlignment="center"
+                    fontSize="48"/>
+            <ListView row="1" 
+                      class="movie-list" 
+                      items="{{ SearchResults }}" 
+                      loadMoreItems="{{ GetNextPage }}" 
+                      itemTap="selectItem" 
+                      visibility="{{ SearchResults.length > 0 ? 'visible' : 'collapse' }}">
+                <ListView.itemTemplate>
+                    <mr:movie-row />
+                </ListView.itemTemplate>
+            </ListView>
+            <ActivityIndicator color="#009940" 
+                               busy="{{ IsLoading }}" 
+                               rowSpan="2" 
+                               horizontalAlignment="center" 
+                               verticalAlignment="center" />
+        </GridLayout>
+    </GridLayout>
+</StackLayout>

@@ -1,0 +1,61 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+      navigatingTo="navigatingTo"
+      navigatedTo="navigatedTo" 
+      class="page">
+    <Page.actionBar>
+        <ActionBar  title="Oh Gnarly Movies" 
+                    icon="" 
+                    horizontalAlignment="center" 
+                    class="action-bar">
+        </ActionBar>
+    </Page.actionBar>
+    <GridLayout rows="*, auto">
+        <GridLayout class="login-wrap" 
+                    rows="90,90,90">
+            <TextField  margin="20,0" 
+                        id="username" 
+                        backgroundColor="white" 
+                        color="black" 
+                        row="0" 
+                        text="{{ Username }}" 
+                        autocorrect="false" 
+                        hint="Username"
+                        borderRadius="5"/>
+            <TextField  margin="20,0" 
+                        id="password" 
+                        backgroundColor="white" 
+                        color="black" 
+                        row="1" 
+                        text="{{ Password }}" 
+                        secure="true" 
+                        autocorrect="false" 
+                        hint="Password"
+                        borderRadius="5"/>
+<!--            <Label visibility="{{ LoginError ? 'visible' : 'collapse' }}" text="Invalid username or password" class="login-error" />-->
+            <Button row="2" 
+                    tap="{{ ProcessLogin }}" 
+                    isEnabled="{{ !IsLoading }}" 
+                    text="Login" 
+                    class="btn"/>
+            <ActivityIndicator  busy="{{ IsLoading }}" 
+                                color="#009940" 
+                                rowSpan="3"  
+                                width="40" 
+                                height="40" 
+                                verticalAlignment="center" 
+                                horizontalAlignment="center" />
+        </GridLayout>
+        <GridLayout row="1" 
+                    visibility="{{ IsLoading ? 'hidden' : 'visible' }}">
+            <!-- <Button tap="{{ ShowRegistration }}" text="New User" class="btn" /> -->
+            <Label color="#009940"
+                   fontSize="24" 
+                   horizontalAlignment="center" 
+                   verticalAlignment="center"
+                   text="New User? Click Here"
+                   padding="5, 15"
+                   tap="{{ ShowRegistration }}"
+                   textDecoration="underline" />
+        </GridLayout>
+    </GridLayout>
+</Page>

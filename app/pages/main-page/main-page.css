@@ -1,0 +1,24 @@
+.favorite-wrap {
+    padding: 5;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.activity-indicator {
+    color: #009940;
+}
+
+.segmented-bar {
+    font-size: 8;
+    background-color: #2b2c2d;
+    color: white;
+    selected-background-color: #009940;
+    height: 30;
+}
+
+.icon {
+    font-family: 'icomoon';
+    font-size: 16;
+}

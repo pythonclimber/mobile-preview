@@ -1,0 +1,111 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+      class="page"
+      navigatingTo="navigatingTo">
+    <StackLayout id="page-layout">
+        <GridLayout class="action-bar"
+                    columns="*, auto">
+            <StackLayout tap="backTap"
+                         class="action-wrap">
+                <Image src="res://ogm_back_arrow_green" height="20" width="20"/>
+            </StackLayout>
+        </GridLayout>
+        <GridLayout id="movie-details">
+            <ScrollView>
+                <GridLayout rows="auto, auto, *"
+                            visibility="{{ IsLoading ? 'hidden' : 'visible' }}"
+                            padding="0,15">
+                    <GridLayout row="0"
+                                columns="auto, *">
+                        <GridLayout class="image-layout">
+                            <Image src="{{ ImageSource }}"
+                                   class="movie-image"/>
+                        </GridLayout>
+                        <StackLayout class="title-layout"
+                                     col="1">
+                            <Label text="{{ Title + ' (' + Year + ')' }}"
+                                   class="main-title left-pad-2x"
+                                   textWrap="true"/>
+                            <Label text="{{ Director }}"
+                                   class="left-pad-2x"/>
+                            <Label text="{{ Format }}"
+                                   class="left-pad-2x"/>
+                            <GridLayout tap="{{ AddRating }}"
+                                        visibility="{{ IsMine ? 'visible' : 'collapse' }}"
+                                        class="left-pad">
+                                <GridLayout columns="auto,auto,auto,auto,auto"
+                                            visibility="{{ !Rating ? 'collapse' : 'visible' }}">
+                                    <Image id="star-1"
+                                           class="star-image"
+                                           col="0"
+                                           src="{{ Rating >= 2 ? 'res://star_green_1024' : (Rating >= 1 ? 'res://star_half_1024' : 'res://star_white_1024') }}"/>
+                                    <Image id="star-2"
+                                           class="star-image"
+                                           col="1"
+                                           src="{{ Rating >= 4 ? 'res://star_green_1024' : (Rating >= 3 ? 'res://star_half_1024' : 'res://star_white_1024') }}"/>
+                                    <Image id="star-3"
+                                           class="star-image"
+                                           col="2"
+                                           src="{{ Rating >= 6 ? 'res://star_green_1024' : (Rating >= 5 ? 'res://star_half_1024' : 'res://star_white_1024') }}"/>
+                                    <Image id="star-4"
+                                           class="star-image"
+                                           col="3"
+                                           src="{{ Rating >= 8 ? 'res://star_green_1024' : (Rating >= 7 ? 'res://star_half_1024' : 'res://star_white_1024') }}"/>
+                                    <Image id="star-5"
+                                           class="star-image"
+                                           col="4"
+                                           src="{{ Rating >= 9.9 ? 'res://star_green_1024' : (Rating >= 9 ? 'res://star_half_1024' : 'res://star_white_1024') }}"/>
+                                </GridLayout>
+                                <Label text="Click to rate"
+                                       class="gnarly-text rate-link left-pad"
+                                       visibility="{{ !Rating ? 'visible' : 'collapse' }}"/>
+                            </GridLayout>
+                        </StackLayout>
+                    </GridLayout>
+                    <GridLayout row="1"
+                                columns="*, *"
+                                padding="30,0">
+                        <GridLayout col="0">
+                            <Button visibility="{{ !UserId || Wishlist ? 'visible' : 'hidden' }}"
+                                    text="Add"
+                                    class="btn"
+                                    ios:fontSize="18"
+                                    tap="{{ AddToMyCollection }}"/>
+                            <Button visibility="{{ !UserId || Wishlist ? 'hidden' : 'visible' }}"
+                                    text="Remove"
+                                    class="btn"
+                                    ios:fontSize="18"
+                                    tap="{{ RemoveFromMyCollection }}"/>
+                        </GridLayout>
+                        <GridLayout col="1">
+                            <Button text="Wishlist"
+                                    class="btn"
+                                    ios:fontSize="18"
+                                    tap="{{ AddToWishlist }}"
+                                    visibility="{{ !UserId ? 'visible' : 'hidden'}}"/>
+                            <Button text="Un-wishlist"
+                                    class="btn"
+                                    ios:fontSize="18"
+                                    tap="{{ RemoveFromMyCollection }}"
+                                    visibility="{{ UserId &amp;&amp; Wishlist ? 'visible' : 'hidden'}}"/>
+                            <Button text="Edit Formats"
+                                    class="btn"
+                                    ios:fontSize="18"
+                                    tap="{{ AddFormats }}"
+                                    visibility="{{ !UserId || Wishlist ? 'hidden' : 'visible' }}"/>
+                        </GridLayout>
+                    </GridLayout>
+                    <GridLayout row="2"
+                                colSpan="2"
+                                class="plot-layout">
+                        <Label  text="{{ Plot }}"
+                                textWrap="true"
+                                fontSize="18"/>
+                    </GridLayout>
+                </GridLayout>
+            </ScrollView>
+            <ActivityIndicator busy="{{ IsLoading || IsPaused }}"
+                               row="1"
+                               class="horizontal-center vertical-center gnarly-text"/>
+        </GridLayout>
+    </StackLayout>
+</Page>

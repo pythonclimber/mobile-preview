@@ -1,0 +1,34 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      navigatingTo="navigatingTo" 
+      class="page"
+      xmlns:sd="nativescript-ui-sidedrawer"
+      loaded="pageLoaded"
+      xmlns:ab="components/action-bar"
+      xmlns:sdc="components/side-drawer"
+      xmlns:sp="pages/search-page"
+      xmlns:mlp="pages/movie-list-page"
+      xmlns:PullRefresh="@nativescript-community/ui-pulltorefresh"
+      xmlns:mr="components/movie-row">
+    <StackLayout>
+    <ab:action-bar page="{{ Page }}" />
+    <sd:RadSideDrawer id="side-drawer">
+        <sd:RadSideDrawer.drawerContent>
+            <sdc:side-drawer page="{{ Page }}" id="main-drawer"/>
+        </sd:RadSideDrawer.drawerContent>
+        <sd:RadSideDrawer.mainContent>
+            <GridLayout>
+                <GridLayout rows="*" 
+                            columns="*"
+                            visibility="{{ DisplayPage == DisplayPages.MovieListPage ? 'visible' : 'collapse' }}">
+                    <mlp:movie-list-page />
+                </GridLayout>
+                <GridLayout rows="*"
+                            columns="*"
+                            visibility="{{ DisplayPage == DisplayPages.SearchPage ? 'visible' : 'collapse' }}">
+                    <sp:search-page />
+                </GridLayout>
+            </GridLayout>
+        </sd:RadSideDrawer.mainContent>
+    </sd:RadSideDrawer>
+    </StackLayout>
+</Page>

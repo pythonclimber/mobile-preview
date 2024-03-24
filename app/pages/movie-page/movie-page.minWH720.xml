@@ -1,0 +1,117 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      class="page" 
+      navigatingTo="navigatingTo"> 
+    <StackLayout>
+        <GridLayout class="action-bar action-bar-tablet"
+                    columns="*, auto">
+            <StackLayout tap="backTap"
+                         class="action-wrap">
+                <Image src="res://ogm_back_arrow" height="60" width="60"/>
+            </StackLayout>
+            <!-- <StackLayout tap="{{ GoToMyMovies }}"
+                         col="1"
+                         class="action-wrap"
+                         visibility="{{ Flow == MovieFlowSearch ? 'visible' : 'hidden' }}">
+                <Label text="My Movies"
+                       class="back-text tablet-text"/>
+            </StackLayout> -->
+        </GridLayout>
+        <GridLayout id="movie-details"
+                    padding="0,20">
+            <ScrollView>
+                <GridLayout rows="auto, auto, *" 
+                            visibility="{{ IsLoading ? 'hidden' : 'visible' }}">
+                    <GridLayout row="0"
+                                columns="auto, *">
+                        <GridLayout class="image-layout">
+                            <Image src="{{ ImageSource }}"
+                                   class="movie-image-tab"/>
+                        </GridLayout>
+                        <StackLayout class="title-layout" 
+                                     col="1">
+                            <Label text="{{ Title + ' (' + Year + ')' }}" 
+                                   class="main-title-tablet left-pad-2x-tab" 
+                                   textWrap="true" />
+                            <Label text="{{ Director }}" 
+                                   class="director-info left-pad-2x-tab"/>
+                            <Label text="{{ Format }}" 
+                                   class="director-info left-pad-2x-tab"/>
+                            <GridLayout tap="{{ AddRating }}"
+                                        visibility="{{ Flow == MovieFlowCollection &amp;&amp; !Wishlist ? 'visible' : 'collapse' }}">
+                                <GridLayout columns="auto,auto,auto,auto,auto" visibility="{{ !Rating ? 'collapse' : 'visible' }}">
+                                    <Image id="star-1"
+                                           class="star-image-tab"
+                                           col="0"
+                                           src="{{ Rating >= 2 ? 'res://star_green_1024' : (Rating >= 1 ? 'res://star_half_1024' : 'res://star_white_1024') }}"/>
+                                    <Image id="star-2"
+                                           class="star-image-tab"
+                                           col="1"
+                                           src="{{ Rating >= 4 ? 'res://star_green_1024' : (Rating >= 3 ? 'res://star_half_1024' : 'res://star_white_1024') }}"/>
+                                    <Image id="star-3"
+                                           class="star-image-tab"
+                                           col="2"
+                                           src="{{ Rating >= 6 ? 'res://star_green_1024' : (Rating >= 5 ? 'res://star_half_1024' : 'res://star_white_1024') }}"/>
+                                    <Image id="star-4"
+                                           class="star-image-tab"
+                                           col="3"
+                                           src="{{ Rating >= 8 ? 'res://star_green_1024' : (Rating >= 7 ? 'res://star_half_1024' : 'res://star_white_1024') }}"/>
+                                    <Image id="star-5"
+                                           class="star-image-tab"
+                                           col="4"
+                                           src="{{ Rating >= 9.9 ? 'res://star_green_1024' : (Rating >= 9 ? 'res://star_half_1024' : 'res://star_white_1024') }}"/>
+                                </GridLayout>
+                                <Label text="Click to rate"
+                                       class="gnarly-text rate-link-tab left-pad-2x-tab"
+                                       visibility="{{ !Rating ? 'visible' : 'collapse' }}" />
+                            </GridLayout>
+                        </StackLayout>
+                    </GridLayout>
+                    <GridLayout row="1"
+                                columns="*, *"
+                                padding="40,0">
+                        <GridLayout col="0">
+                            <Button visibility="{{ !UserId || Wishlist ? 'visible' : 'hidden' }}"
+                                    text="Add"
+                                    class="btn btn-tab"
+                                    ios:fontSize="36"
+                                    tap="{{ AddToMyCollection }}" />
+                            <Button visibility="{{ !UserId || Wishlist ? 'hidden' : 'visible' }}"
+                                    text="Remove"
+                                    class="btn btn-tab"
+                                    ios:fontSize="36"
+                                    tap="{{ RemoveFromMyCollection }}" />
+                        </GridLayout>
+                        <GridLayout col="1">
+                            <Button text="Wishlist"
+                                    class="btn btn-tab"
+                                    ios:fontSize="36"
+                                    tap="{{ AddToWishlist }}"
+                                    visibility="{{ !UserId ? 'visible' : 'hidden'}}" />
+                            <Button text="Un-wishlist" 
+                                    class="btn btn-tab"
+                                    ios:fontSize="36"
+                                    tap="{{ RemoveFromMyCollection }}"
+                                    visibility="{{ UserId &amp;&amp; Wishlist ? 'visible' : 'hidden'}}" />
+                            <Button text="Edit Formats"
+                                    class="btn btn-tab"
+                                    ios:fontSize="36"
+                                    tap="{{ AddFormats }}"
+                                    visibility="{{ !UserId || Wishlist ? 'hidden' : 'visible' }}" />
+                        </GridLayout>
+                    </GridLayout>
+                    <GridLayout row="2"
+                                colSpan="2" 
+                                class="plot-layout">
+                        <Label  text="{{ Plot }}"
+                                textWrap="true"
+                                class="tablet-text"
+                                margin="0 0 0 10" />
+                    </GridLayout>
+                </GridLayout>
+            </ScrollView>
+            <ActivityIndicator busy="{{ IsLoading || IsPaused }}"
+                               class="gnarly-text vertical-center horizontal-center"
+                               row="1"/>
+        </GridLayout>
+    </StackLayout>
+</Page>

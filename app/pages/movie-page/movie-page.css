@@ -1,0 +1,59 @@
+.main-title {
+    font-size: 18;
+    color: white;
+}
+
+.main-title-tablet {
+    font-size: 36;
+    color: white;
+}
+
+.director-info {
+    font-size: 28;
+    color: white;
+}
+
+.title-layout {
+    vertical-align: top;
+}
+
+.plot-layout {
+    /* background-color: #009940; */
+    vertical-align: top;
+}
+
+.movie-image {
+    stretch: aspectFill;
+    width: 180;
+    height: 270;
+    horizontal-align: left;
+    vertical-align: top;
+}
+
+.movie-image-tab {
+    stretch: aspectFill;
+    width: 360;
+    height: 540;
+    horizontal-align: left;
+    vertical-align: top;
+}
+
+.star-image {
+    height: 24;
+    width: 24;
+}
+
+.star-image-tab {
+    width: 48;
+    height: 48;
+}
+
+.rate-link {
+    text-decoration: underline;
+    font-size: 18;
+}
+
+.rate-link-tab {
+    text-decoration: underline;
+    font-size: 36;
+}

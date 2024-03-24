@@ -1,3 +1,5 @@
-import { Application } from '@nativescript/core';
+﻿import "./bundle-config";
+import {Application } from "@nativescript/core"
 
-Application.run({ moduleName: 'app-root' });
+Application.setCssFileName('app.css');
+Application.run({ moduleName: 'app-root', backstackVisible: false });
